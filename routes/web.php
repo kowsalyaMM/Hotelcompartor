@@ -1,0 +1,69 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\FaceBookController;
+use App\Http\Controllers\Auth\LoginController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Route::get('/homepage', function () {
+//     return view('welcome');
+// });
+
+//homeurl
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//google
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('home');
+//     })->name('dashboard');
+// });
+
+//redirect homepage
+Route::get('/dashboard', function () {
+            return view('welcome');
+        })->name('dashboard');
+   
+// // Facebook Login URL
+// Route::prefix('facebook')->name('facebook.')->group( function(){
+//     Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
+//     Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
+// });
+
+//Facebook
+Route::controller(FacebookController::class)->group(function(){
+    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+});
+Route::any('/userlogin', array('uses' => 'App\Http\Controllers\Auth\LoginController@select'))->name('userlogin');
+
+//Route::get('/loginuser', [App\Http\Controllers\LoginController::class, 'loginuser'])->name('userlogin');
+
+// Route::any('/loginuser', [LoginController::class, 'select'])->name('userlogin');
