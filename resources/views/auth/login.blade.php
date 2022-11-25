@@ -1,3 +1,4 @@
+
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -12,17 +13,18 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <form method="post" action="{{route('userlogin')}}" id="form">
+        
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autofocus />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password"  autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
@@ -58,3 +60,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
