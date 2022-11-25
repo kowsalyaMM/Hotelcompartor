@@ -8,6 +8,8 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FaceBookController;
 use App\Http\Controllers\Auth\LoginController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,8 +64,20 @@ Route::controller(FacebookController::class)->group(function(){
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback');
 });
-Route::any('/userlogin', array('uses' => 'App\Http\Controllers\Auth\LoginController@select'))->name('userlogin');
+//Route::any('/userlogin', array('uses' => 'App\Http\Controllers\Auth\LoginController@select'))->name('userlogin');
 
 //Route::get('/loginuser', [App\Http\Controllers\LoginController::class, 'loginuser'])->name('userlogin');
 
-// Route::any('/loginuser', [LoginController::class, 'select'])->name('userlogin');
+//Route::post('/loginuser', [LoginController::class, 'select'])->name('userlogin');
+//Route::post('/submitform', [LoginController::class, 'submitform'])->name('submitform');
+
+Route::any('/loginuser', 'App\Http\Controllers\Auth\LoginController@select')->name('userlogin');;
+
+
+
+// Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+  
