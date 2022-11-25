@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use DB;
 
 class LoginController extends Controller
 {
@@ -37,8 +39,30 @@ class LoginController extends Controller
 
     public function select(Request $request)
     {
-       dd('ghjj');
+        //dd($request->all());
+        
+        $id = $request->all();
+        // dd($id['email']);
+        //$user= Auth::user();
+        $host = DB::table('users')->select('email')->where('email', $id['email'])->get();
+        if(isset($host)&& count($host) >0){
+            return redirect('dashboard');
+        }else{
+            //return redirect('login');
+            return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([
+                'approve' => 'These credentials do not match our records.',
+    ]);
+        }
+         
+        //  dd($host);
+       
+        
     }
+
+   
+    
+    
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
