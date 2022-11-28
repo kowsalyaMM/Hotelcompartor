@@ -10,7 +10,12 @@
             <div class="row m-0 justify-content-between">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Where do you want to stay</label>
-                    <input type="text" placeholder="Enter Destination or Hotel Name" class="search-stay">
+                   
+                    <input type="text" placeholder="Enter Destination or Hotel Name" class="search_field" id="search_field">
+                    <div class="auto_suggest" style="width:500px;height:500px;border:1px solid black;z-index:-1;display:none;margin-top: 5px;position: absolute;  background: #fff;">
+                        <ul id="list_show">
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Check- In & check Out</label>
@@ -18,12 +23,107 @@
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Guests and Rooms</label>
-                    <select class="form-control">
+                    <!-- <select class="form-control">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
-                    </select>
+                    </select> -->
+                    <!-- <div class="guestrooms">1 adult, 1 Room</div>
+                    <div class="members" style="display:none">
+                        <li>
+                             <img src="{{asset('images/Maskgroup.svg')}}"> 
+                            Adults 
+                            <div class="handle-counter" id="handleCounter">
+                                <button class="counter-minus btn btn-primary">-</button>
+                                <input type="text" class="adults" value="0">
+                                <button class="counter-plus btn btn-primary">+</button>
+                            </div>
+                        </li>
+                        <li>Children
+                            <div class="handle-counter" id="handleCounter">
+                                <button class="counter-minus btn btn-primary">-</button>
+                                <input type="text" class="Children" value="0">
+                                <button class="counter-plus btn btn-primary">+</button>
+                            </div>
+                        </li>
+                        <li>Rooms
+                            <div class="handle-counter" id="handleCounter">
+                                <button class="counter-minus btn btn-primary">-</button>
+                                <input type="text"  class="Rooms" value="0">
+                                <button class="counter-plus btn btn-primary">+</button>
+                            </div>
+                        </li>
+                     <div>
+                       <button id="reset">
+                        RESET
+                       </button>
+                       <button id="guests_ok">
+                        OK
+                       </button>
+                      </div>
+                    </div> -->
+                    <div class="position-relative">
+                        <div class="guestrooms">
+                            <input class="guest-input" value="1 adult, 1 Room" readonly />                      
+                        </div>
+                        <div class="members" style="display:none">
+                                <div class="list-room">
+                                    <div class="list-guest">
+                                        <img src="{{asset('images/Maskgroup.svg')}}"> 
+                                        <p>Adults</p>
+                                    </div>
+                                    <div class="handle-counter" id="handleCounter">
+                                        <button class="counter-minus btn btn-primary">
+                                            <img src="{{asset('images/white-arrow.svg')}}">   
+                                        </button>
+                                        <input type="text" class="adults" value="0">
+                                        <button class="counter-plus btn btn-primary">
+                                            <img src="{{asset('images/white-arrow.svg')}}">   
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="list-room">
+                                    <div class="list-guest">
+                                        <img src="{{asset('images/childrengroup.svg')}}"> 
+                                        <p>Children</p> 
+                                    </div>
+                                    <div class="handle-counter" id="handleCounter">
+                                        <button class="counter-minus btn btn-primary">
+                                               <img src="{{asset('images/white-arrow.svg')}}">
+                                        </button>
+                                        <input type="text" class="adults" value="0">
+                                        <button class="counter-plus btn btn-primary">
+                                               <img src="{{asset('images/white-arrow.svg')}}">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="list-room">
+                                    <div class="list-guest">
+                                        <img src="{{asset('images/roomgroup.svg')}}"> 
+                                        <p>Rooms </p>
+                                    </div>
+                                    <div class="handle-counter" id="handleCounter">
+                                        <button class="counter-minus btn btn-primary">
+                                               <img src="{{asset('images/white-arrow.svg')}}">
+                                        </button>
+                                        <input type="text" class="adults" value="0">
+                                        <button class="counter-plus btn btn-primary">
+                                               <img src="{{asset('images/white-arrow.svg')}}">
+                                        </button>
+                                    </div>
+                                </div>      
+                                <hr>                         
+                                <div class="reset-ok">
+                                    <button id="reset">
+                                        Reset
+                                    </button>
+                                    <button id="guests_ok">
+                                        Done
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Popular Filters</label>
@@ -36,7 +136,7 @@
                 </div>
                 <div class="col-xl-2 col-lg-12 col-md-12 col-sm-12 col-12 form-group text-center text-xl-left Search-Hotels">
                     <label></label>
-                    <button type="button" class="btn btn-primary">Search Hotels</button>
+                    <button type="button" class="btn btn-primary" >Search Hotels</button>
                 </div>
             </div>                 
         </div>
@@ -45,7 +145,7 @@
             <div class="row m-0">   
                 <div class="col-xl-2 col-lg-4 col-md-4 col-12">
                     <!-- Nav pills -->
-                    <ul class="nav nav-pills" role="tablist">
+                    <ul class="nav nav-pills tabs-home" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="pill" href="#home">Edinburgh</a>
                         </li>
@@ -324,3 +424,30 @@
         </div>
     </div>
 </div>
+
+<?php
+    $dbhost = '18.135.144.242';
+    $dbname='prod_hotelcomp';
+    $dbuser = 'monty217';
+    $dbpass = 'Xvvbfg#WEsdf@526';
+
+    $dbconn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpass")
+        or die('Could not connect: ' . pg_last_error());
+
+    $query = 'SELECT * FROM public."T_property_location_enUS"
+    ORDER BY "propertyId_expedia" ASC LIMIT 5';
+
+   
+
+    $result = pg_query($query) or die('Error message: ' . pg_last_error());
+
+    while ($row = pg_fetch_row($result)) {
+        print_r($row);
+    }
+
+    pg_free_result($result);
+    pg_close($dbconn);
+?>
+
+
+
