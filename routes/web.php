@@ -73,9 +73,19 @@ Route::controller(FacebookController::class)->group(function(){
 
 Route::any('/loginuser', 'App\Http\Controllers\Auth\LoginController@select')->name('userlogin');;
 
+Route::any('/login', 'App\Http\Controllers\Auth\LoginController@index')->name('login');;
+
+//Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+//Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+//Route::get('login', '\App\Http\Controllers\Auth\LoginController@dataselet');
+
+Route::get('/afterlogin', function () {
+    return view('pages.afterlogin');
+});
 
 
-// Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
 
 
 
