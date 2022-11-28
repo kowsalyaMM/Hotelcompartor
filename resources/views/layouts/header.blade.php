@@ -1,3 +1,27 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Laravel</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+
+  <!-- style -->
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
+
+  <!-- select -->
+  <link rel="stylesheet" href="{{asset('select/css/select2.css')}}"/>
+
+  <!-- owl -->
+  <link rel="stylesheet" href="{{asset('owl/css/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{asset('owl/css/owl.theme.default.min.css')}}">        
+</head>
 <nav class="header-section navbar navbar-expand-md navbar-light">
   <a class="navbar-brand" href="#">
     <img src="{{asset('images/logo.svg')}}">    
@@ -25,8 +49,33 @@
         </select>
       </li>
       <li class="nav-item login">
-        <a class="nav-link" href="#">Login</a>
-      </li>    
+        <a class="nav-link" id="loginbutton">Login</a>
+        <div class="login-link">@include('auth/login')</div>
+      </li> 
+         
     </ul>
+    <!-- <li class="nav-item login-after">
+        <div class="dropdown">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <img src="{{asset('images/profile.svg')}}">   
+          </button>
+          <div class="dropdown-menu">
+            <div class="logout-sec">
+              <div class="email-logout">
+                <img src="{{asset('images/profile.svg')}}">   
+                <p>Scarlet@yopmail.com</p>
+              </div>
+            </div>
+            <div class="logout-sec">
+              <div class="log-out">
+                <img src="{{asset('images/logout.svg')}}">   
+                <p>Logout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>   -->
   </div>  
 </nav>
+
+
