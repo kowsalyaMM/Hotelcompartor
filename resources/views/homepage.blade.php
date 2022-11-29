@@ -1,5 +1,5 @@
-<div class="home-page">
-    <div class="banner-section">
+<div class="home-page" id="homepage">
+    <div class="banner-section" id="homepage" >
         <div class="banner-inner">
             <p>Book with Us and</p> 
             <mark>Enjoy your Journey</mark>
@@ -11,58 +11,20 @@
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Where do you want to stay</label>
                    
-                    <input type="text" placeholder="Enter Destination or Hotel Name" class="search_field" id="search_field">
-                    <div class="auto_suggest" style="width:500px;height:500px;border:1px solid black;z-index:-1;display:none;margin-top: 5px;position: absolute;  background: #fff;">
-                        <ul id="list_show">
-                        </ul>
+                    <div class="position-relative">
+                        <input type="text" placeholder="Enter Destination or Hotel Name" class="search-stay search_field" id="search_field">                   
+                        <div class="auto_suggest" style="display:none;">
+                            <ul id="list_show">
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Check- In & check Out</label>
-                    <input type="text" class="calender-sec">
+                    <input type="text" class="calender-sec" name="datefilter" id="date_picker" value=""/>  
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
-                    <label>Guests and Rooms</label>
-                    <!-- <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select> -->
-                    <!-- <div class="guestrooms">1 adult, 1 Room</div>
-                    <div class="members" style="display:none">
-                        <li>
-                             <img src="{{asset('images/Maskgroup.svg')}}"> 
-                            Adults 
-                            <div class="handle-counter" id="handleCounter">
-                                <button class="counter-minus btn btn-primary">-</button>
-                                <input type="text" class="adults" value="0">
-                                <button class="counter-plus btn btn-primary">+</button>
-                            </div>
-                        </li>
-                        <li>Children
-                            <div class="handle-counter" id="handleCounter">
-                                <button class="counter-minus btn btn-primary">-</button>
-                                <input type="text" class="Children" value="0">
-                                <button class="counter-plus btn btn-primary">+</button>
-                            </div>
-                        </li>
-                        <li>Rooms
-                            <div class="handle-counter" id="handleCounter">
-                                <button class="counter-minus btn btn-primary">-</button>
-                                <input type="text"  class="Rooms" value="0">
-                                <button class="counter-plus btn btn-primary">+</button>
-                            </div>
-                        </li>
-                     <div>
-                       <button id="reset">
-                        RESET
-                       </button>
-                       <button id="guests_ok">
-                        OK
-                       </button>
-                      </div>
-                    </div> -->
+                    <label>Guests and Rooms</label>                   
                     <div class="position-relative">
                         <div class="guestrooms">
                             <input class="guest-input" value="1 adult, 1 Room" readonly />                      
@@ -127,12 +89,52 @@
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Popular Filters</label>
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
+                    <div class="position-relative PopularFilters">
+                        <div class="Popular-Filters">
+                            <input class="pop-input" value="4 Stars" readonly />                      
+                        </div>
+                        <div class="Pop_Filter" style="display:none">
+                            <div class="popular-bor">                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck27">
+                                    <label class="custom-control-label" for="customCheck27">
+                                        <span class="ml-3 d-flex align-items-center">3 Stars 
+                                            <span class="star-multi ml-1 mr-2">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>                                                                
+                            </div> 
+                            <div class="popular-bor">                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck28">
+                                    <label class="custom-control-label" for="customCheck28">
+                                        <span class="ml-3 d-flex align-items-center">4 Stars 
+                                            <span class="star-multi ml-1 mr-2">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>                                                                
+                            </div>  
+                            <div class="popular-bor">                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck29">
+                                    <label class="custom-control-label" for="customCheck29">
+                                        <span class="ml-3 d-flex align-items-center">
+                                            Free Cancellation                                           
+                                        </span>
+                                    </label>
+                                </div>                                                                
+                            </div> 
+                        </div>
+                    </div>  
                 </div>
                 <div class="col-xl-2 col-lg-12 col-md-12 col-sm-12 col-12 form-group text-center text-xl-left Search-Hotels">
                     <label></label>
@@ -425,29 +427,6 @@
     </div>
 </div>
 
-<?php
-    $dbhost = '18.135.144.242';
-    $dbname='prod_hotelcomp';
-    $dbuser = 'monty217';
-    $dbpass = 'Xvvbfg#WEsdf@526';
-
-    $dbconn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpass")
-        or die('Could not connect: ' . pg_last_error());
-
-    $query = 'SELECT * FROM public."T_property_location_enUS"
-    ORDER BY "propertyId_expedia" ASC LIMIT 5';
-
-   
-
-    $result = pg_query($query) or die('Error message: ' . pg_last_error());
-
-    while ($row = pg_fetch_row($result)) {
-        print_r($row);
-    }
-
-    pg_free_result($result);
-    pg_close($dbconn);
-?>
 
 
 
