@@ -9,11 +9,17 @@
                 <div class="row m-0 justify-content-between">
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                         <label>Where do you want to stay</label>
-                        <input type="text" placeholder="Enter Destination or Hotel Name" class="search-stay">
+                        <div class="position-relative">
+                        <input type="text" placeholder="Enter Destination or Hotel Name" class="search-stay search_field" id="search_field">                   
+                        <div class="auto_suggest" style="display:none;">
+                            <ul id="list_show">
+                            </ul>
+                        </div>
+                    </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                         <label>Check- In & check Out</label>
-                        <input type="text" class="calender-sec">
+                        <input type="text" class="calender-sec" name="datefilter" id="date_picker" value=""/> 
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                         <label>Guests and Rooms</label>
@@ -81,12 +87,52 @@
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                         <label>Popular Filters</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
+                        <div class="position-relative PopularFilters">
+                        <div class="Popular-Filters">
+                            <input class="pop-input" value="4 Stars" readonly />                      
+                        </div>
+                        <div class="Pop_Filter" style="display:none">
+                            <div class="popular-bor">                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck27">
+                                    <label class="custom-control-label" for="customCheck27">
+                                        <span class="ml-3 d-flex align-items-center">3 Stars 
+                                            <span class="star-multi ml-1 mr-2">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>                                                                
+                            </div> 
+                            <div class="popular-bor">                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck28">
+                                    <label class="custom-control-label" for="customCheck28">
+                                        <span class="ml-3 d-flex align-items-center">4 Stars 
+                                            <span class="star-multi ml-1 mr-2">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                                <img src="{{asset('images/Star.svg')}}">
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>                                                                
+                            </div>  
+                            <div class="popular-bor">                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck29">
+                                    <label class="custom-control-label" for="customCheck29">
+                                        <span class="ml-3 d-flex align-items-center">
+                                            Free Cancellation                                           
+                                        </span>
+                                    </label>
+                                </div>                                                                
+                            </div> 
+                        </div>
+                    </div>  
                     </div>
                     <div class="col-xl-2 col-lg-12 col-md-12 col-sm-12 col-12 form-group text-center text-xl-left Search-Hotels">
                         <label></label>
