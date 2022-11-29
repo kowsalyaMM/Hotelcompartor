@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +29,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 //homeurl
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->with('login',1);
 });
 
 Auth::routes();
@@ -49,9 +51,9 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 // });
 
 //redirect homepage
-Route::get('/dashboard', function () {
-            return view('welcome');
-        })->name('dashboard');
+Route::get('/hotels', function () {
+            return view('welcome')->with('login',2);
+        })->name('hotels');
    
 // // Facebook Login URL
 // Route::prefix('facebook')->name('facebook.')->group( function(){
@@ -80,11 +82,13 @@ Route::any('/login', 'App\Http\Controllers\Auth\LoginController@index')->name('l
 //Route::get('login', '\App\Http\Controllers\Auth\LoginController@dataselet');
 
 Route::get('/afterlogin', function () {
-    return view('pages.afterlogin');
+    //return view('pages.afterlogin');
+    return view('pages.afterlogin')->with('login',2);
 });
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
+// Route::get('/hotels', '\App\Http\Controllers\Auth\LoginController@hotels');
 
 
 
