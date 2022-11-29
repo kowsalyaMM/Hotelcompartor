@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use DB;
+use Redirect;
+use Session;
+
+
 
 class LoginController extends Controller
 {
@@ -36,17 +40,29 @@ class LoginController extends Controller
      *
      * @return void
      */
-
+    public function  index(){
+        // dd('hii');
+        return view('auth.login');
+    }
+    
     public function select(Request $request)
     {
-        //dd($request->all());
+       
+        
         
         $id = $request->all();
-        // dd($id['email']);
+
+       
+      
         //$user= Auth::user();
         $host = DB::table('users')->select('email')->where('email', $id['email'])->get();
         if(isset($host)&& count($host) >0){
-            return redirect('dashboard');
+         
+            $session_var=Session::put('user',$host);
+            // dd(Session::get('user'));
+            return redirect('hotels');
+            // return Views::make('welcome')
+            // ->with('login',$session_var);
         }else{
             //return redirect('login');
             return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([
@@ -58,7 +74,16 @@ class LoginController extends Controller
        
         
     }
+    // public function hotels(Request $request) {
+    //    dd(Auth::id())
+    //   }
 
+    public function logout(Request $request) {
+        // Session::flush();
+        // Session::destroy();
+        Auth::logout();
+        return redirect('/');
+      }
    
     
     
