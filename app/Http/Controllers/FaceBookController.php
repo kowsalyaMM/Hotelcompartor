@@ -8,56 +8,66 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use View;
-class FacebookController extends Controller
+
+class GoogleController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function redirectToFacebook()
+    public function redirectToGoogle()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('google')->redirect();
     }
-           
+        
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function handleFacebookCallback()
+    public function handleGoogleCallback()
     {
         try {
-        
-            $user = Socialite::driver('facebook')->stateless()->user();
-         
-            $finduser = User::where('facebook_id', $user->id)->first();
-         
+      
+            $user = Socialite::driver('google')->stateless()->user();
+            
+           //dd($user->avatar);
+           
+            $finduser = User::where('google_id', $user->id)->first();
+
+          
+            //dd($finduser);
+
+           
+        //    dd($finduser);
             if($finduser){
-         
-                Auth::login($finduser);
        
-                //return redirect()->intended('hotels');
+                Auth::login($finduser);
+      
+                // return redirect('hotels');
+
                 return View::make('welcome')
                 ->with('login',2)
-                ->with('avatar_cond',false)
+                ->with('avatar_cond',true)
                 ->with('user',$user);
-                //return redirect('dashboard');
-         
+       
             }else{
-                $newUser = User::updateOrCreate(['email' => $user->email],[
-                        'name' => $user->name,
-                        'facebook_id'=> $user->id,
-                        'password' => encrypt('123456dummy')
-                    ]);
-        
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id'=> $user->id,
+                    'password' => encrypt('123456dummy')
+                ]);
+      
                 Auth::login($newUser);
-        
+      
                 return redirect()->intended('hotels');
             }
-       
+      
         } catch (Exception $e) {
             //dd($e->getMessage());
+            throw $e;
         }
     }
 }
