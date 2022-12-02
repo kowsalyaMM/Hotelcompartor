@@ -1884,7 +1884,11 @@ a.forgot-pass {
 .login-after button:after {
   display: none;
 }
-
+.login-after .dropdown-toggle img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
 .email-logout,
 .log-out {
   display: flex;
@@ -1921,6 +1925,7 @@ a.forgot-pass {
   width: 35px;
   height: 35px;
   margin-right: 0.8rem;
+  border-radius: 50px;
 }
 
 .email-logout:hover {
@@ -2242,6 +2247,7 @@ td.available {
   overflow-y: auto;
   margin: 0rem;
   overflow-x: hidden;
+  cursor: pointer;
 }
 .auto_suggest #list_show li {
   border-bottom: 1px solid #e5e5e5;
@@ -2344,3 +2350,9 @@ td.available {
   }
 }
 /* PopularFilters style end */
+
+
+.error {
+  color: red;
+  padding: .375rem .75rem;
+}
