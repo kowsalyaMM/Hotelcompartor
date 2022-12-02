@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use DB;
 use Redirect;
 use Session;
-
-
+use App\Models\User;
+use View;
 
 class LoginController extends Controller
 {
@@ -47,30 +47,58 @@ class LoginController extends Controller
     
     public function select(Request $request)
     {
-       
-        
-        
-        $id = $request->all();
-
-       
-      
+       //print_r($validation->messages()->all());            
+        $id = $request->all();     
         //$user= Auth::user();
-        $host = DB::table('users')->select('email')->where('email', $id['email'])->get();
-        if(isset($host)&& count($host) >0){
-         
-            $session_var=Session::put('user',$host);
-            // dd(Session::get('user'));
-            return redirect('hotels');
+        $host = DB::table('users')->select('email','google_id')->where('email', $id['email'])->get();
+        //dd($host->google_id);
+        
+    if(count($host)>0){
+        $google = $host[0]->google_id;
+        // dd($google );
+        $user=$host[0]->email;
+       
+        if($google !== null && !empty($google)){
+          // $session_var=Session::put('user',$host);                    
+            //return redirect('/')->with('errorMessageDuration', 'Error!');
+            return view('welcome', [
+                'errorMessageDuration' => 'Users Email exists Already',
+                'route' => 'createPr',
+                'type' => 'new',
+                
+           ])->with('login',1);
+            // return redirect('/');
             // return Views::make('welcome')
             // ->with('login',$session_var);
-        }else{
-            //return redirect('login');
-            return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([
-                'approve' => 'These credentials do not match our records.',
-    ]);
+        } 
+        else if($user !==null && !empty($user)){
+           
+            // return redirect('/hotels');
+            return View::make('welcome')
+            ->with('login',2)
+            ->with('avatar_cond',false)
+            ->with('user', $host );
+            
+          
+            //dd($newUser);
+           
         }
-         
-        //  dd($host);
+    } 
+    else{
+        
+            $newusers = DB::table('users')->select('email')->where('email', $id['email'])->get();
+            $newUser = User::create([
+                'name' => 'new users',
+                'email' =>  $id['email'],
+                'password' => $id['password']
+            ]);
+            return View::make('welcome')
+            ->with('login',2)
+            ->with('avatar_cond',false)
+            ->with('user',$host);
+        }
+   
+    //  dd($host);
        
         
     }
