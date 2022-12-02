@@ -57,23 +57,28 @@
           <option data-img_src="{{asset('images/coins/USD.svg')}}">USD</option>
         </select>
       </li>
-      @if(($login !==2))
+      @if($login == 1)
       <li class="nav-item login">
         <a class="nav-link" id="loginbutton">Login</a>
-        <div class="login-link">@include('auth/login')</div>
+        <div class="login-link">@include('auth.login')</div>
       </li> 
      @endif
-     @if(($login==2))
-      <li class="nav-item login-after" >
+     @if($login == 2)
+      <li class="nav-item login-after">
         <div class="dropdown">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <?php if($avatar_cond==true){?> <img src="{{$user->avatar}}"> <?php } else { ?>
             <img src="{{asset('images/profile.svg')}}">   
+           <?php } ?>
           </button>
           <div class="dropdown-menu">
             <div class="logout-sec">
               <div class="email-logout">
-                <img src="{{asset('images/profile.svg')}}">   
+              <?php if($avatar_cond==true){?> <img src="{{$user->avatar}}"><p><?php echo $user->email; ?></p> 
+              <?php }else{?>
+                <img src="{{asset('images/profile.svg')}}">  
                 <p>Scarlet@yopmail.com</p>
+                <?php } ?>
               </div>
             </div>
             <div class="logout-sec">
@@ -85,8 +90,8 @@
           </div>
         </div>
       </li> 
-      @endif   
-
+     
+@endif
     </ul>
      
   </div>  
