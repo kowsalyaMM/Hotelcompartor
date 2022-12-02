@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Check- In & check Out</label>
-                    <input type="text" class="calender-sec" name="datefilter" id="date_picker" value=""/>  
+                    <input type="text" class="calender-sec" name="datefilter" id="date_picker" value="06/11/2022 to 13/11/2022 "/>  
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12 form-group">
                     <label>Guests and Rooms</label>                   
@@ -54,7 +54,7 @@
                                         <button class="counter-minus btn btn-primary">
                                                <img src="{{asset('images/white-arrow.svg')}}">
                                         </button>
-                                        <input type="text" class="adults" value="0">
+                                        <input type="text" class="Children" value="0">
                                         <button class="counter-plus btn btn-primary">
                                                <img src="{{asset('images/white-arrow.svg')}}">
                                         </button>
@@ -69,7 +69,7 @@
                                         <button class="counter-minus btn btn-primary">
                                                <img src="{{asset('images/white-arrow.svg')}}">
                                         </button>
-                                        <input type="text" class="adults" value="0">
+                                        <input type="text" class="Rooms" value="0">
                                         <button class="counter-plus btn btn-primary">
                                                <img src="{{asset('images/white-arrow.svg')}}">
                                         </button>
@@ -96,7 +96,7 @@
                         <div class="Pop_Filter" style="display:none">
                             <div class="popular-bor">                                
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck27">
+                                    <input type="checkbox" class="custom-control-input" value="3 Stars" id="customCheck27">
                                     <label class="custom-control-label" for="customCheck27">
                                         <span class="ml-3 d-flex align-items-center">3 Stars 
                                             <span class="star-multi ml-1 mr-2">
@@ -110,7 +110,7 @@
                             </div> 
                             <div class="popular-bor">                                
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck28">
+                                    <input type="checkbox" class="custom-control-input" value="4 Stars" id="customCheck28">
                                     <label class="custom-control-label" for="customCheck28">
                                         <span class="ml-3 d-flex align-items-center">4 Stars 
                                             <span class="star-multi ml-1 mr-2">
@@ -125,7 +125,7 @@
                             </div>  
                             <div class="popular-bor">                                
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck29">
+                                    <input type="checkbox" class="custom-control-input" value="Free Cancellation" id="customCheck29">
                                     <label class="custom-control-label" for="customCheck29">
                                         <span class="ml-3 d-flex align-items-center">
                                             Free Cancellation                                           
@@ -426,6 +426,10 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    
+    </script>
+
 
 
 
