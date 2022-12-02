@@ -152,14 +152,28 @@ $('.counter-plus').click(function(){
 
 $('#reset').click(function(){
   $('#guestrooms').val("1 Adult, 1 Room ")
-  $('.adults').val(1)
-  $('.Children').val(1)
+  $('.adults').val(0)
+  $('.Children').val(0)
   $('.Rooms').val(0)
 
   adults[0].dataset.value = $('.adults').val();
   Children[0].dataset.value = $('.Children').val();
   Rooms[0].dataset.value = $('.Rooms').val();
 })
+
+$('#guests_ok').click(function() 
+{
+  
+ var adults = $('.adults').val();
+ var Children = $('.Children').val();
+ var Rooms = $('.Rooms').val();
+
+  $('.guest-input').val(adults +' '+"adults" +','+ Rooms +' ' +"Rooms")
+  
+  var getinput = $('.guest-input').val();
+  console.log(getinput);
+
+});
 //end guestroom
 
 
@@ -185,12 +199,12 @@ $(".calender-sec").click(function() {
 //datapicker end
 
 $('body').click(function(e){
-    console.log('target',e.target.id)
-     var senderElement=e.target.id;
-      if((senderElement== ''))
-      {
-         $(".login-section").css('display','none');
-      }
+    // console.log('target',e.target.id)
+    //  var senderElement=e.target.id;
+    //   if((senderElement== ''))
+    //   {
+    //      $(".login-section").css('display','none');
+    //   }
 
       //  if(!$(e.target).is(".guest-input"))
       //  {
@@ -285,6 +299,7 @@ $(function () {
   async function getUsers(locale, language) {
     let response = await fetch(`https://www.skyscanner.net/g/autosuggest-search/api/v1/search-hotel/${locale}/${language}/?rf=map&vrows=10`);
     let data = await response.json()
+    console.log('dfd'+data);
     return data;
   }
 
@@ -325,3 +340,60 @@ $(function () {
 });
 
 // datapicker script end 
+
+
+//Search intregration
+
+$checks = $(":checkbox");
+    $checks.on('change', function() {
+        var string = $checks.filter(":checked").map(function(i,v){
+            return this.value;
+        }).get();
+        
+        $('.pop-input').val(string);
+    });
+
+// $("input:checkbox").click(function() {
+//       var output = "";
+//       $("input:checked").each(function() {
+//         output = $(this).val();
+//       });
+      
+//       $(".pop-input").val(output.trim());
+// });
+
+
+
+//get all search value
+  //   $('.getVal').click(function(){
+  //     var value = $("[name='properties[wallpaper_size_width]']").val();
+  //     console.log(value);
+  //  });
+
+
+  
+  //$("#search_field").val($("#list_show :selected").val())
+
+  setTimeout(function () {
+  
+    // Closing the alert
+    $('#errormsg').alert('close');
+}, 5000);
+
+
+$('#loginformid').validate({ // initialize the plugin
+  rules: {
+      email: {
+          required: true,
+          email: true
+      },
+      password: {
+          required: true,
+          minlength: 5
+      }
+  },
+  
+});
+
+var country=$('.city-place').val();
+    console.log(country);
